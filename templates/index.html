@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+  .homepage-container {
+    background: linear-gradient(135deg, #4e73df, #1cc88a);
+    padding: 80px 20px;
+    border-radius: 20px;
+    color: white;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  }
+
+  .homepage-title {
+    font-size: 3rem;
+    font-weight: 700;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+  }
+
+  .homepage-text {
+    font-size: 1.3rem;
+    font-weight: 300;
+    margin-bottom: 30px;
+  }
+
+  .homepage-btn {
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    transition: 0.3s;
+  }
+
+  .homepage-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+  }
+</style>
+
+<div class="homepage-container text-center">
+  <h1 class="homepage-title">Welcome to the Assignment Portal</h1>
+  <p class="homepage-text">A simple and powerful system for teachers and students to manage assignments efficiently.</p>
+
+  {% if not current_user.is_authenticated %}
+    <a href="{{ url_for('auth.register') }}" class="btn btn-light homepage-btn me-3">Get Started</a>
+    <a href="{{ url_for('auth.login') }}" class="btn btn-dark homepage-btn">Login</a>
+  {% else %}
+    <a href="{{ url_for('main.dashboard') }}" class="btn btn-light homepage-btn">Go to Dashboard</a>
+  {% endif %}
+</div>
+
+{% endblock %}

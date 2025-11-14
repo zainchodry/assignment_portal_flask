@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .submissions-container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 25px;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .submissions-title {
+        font-size: 26px;
+        font-weight: bold;
+        margin-bottom: 25px;
+        text-align: center;
+        color: #2c3e50;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th {
+        background: #007bff;
+        color: white;
+        padding: 12px;
+        text-align: left;
+        font-size: 15px;
+    }
+
+    td {
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+        font-size: 14px;
+    }
+
+    tr:hover td {
+        background: #f5f8ff;
+    }
+
+</style>
+
+<div class="submissions-container">
+    <h3 class="submissions-title">Submissions</h3>
+
+    <table class="table">
+        <tr>
+            <th>File</th>
+            <th>Student ID</th>
+            <th>Submitted At</th>
+        </tr>
+
+        {% for s in submissions %}
+        <tr>
+            <td>{{ s.file_name }}</td>
+            <td>{{ s.student_id }}</td>
+            <td>{{ s.submitted_at.strftime('%Y-%m-%d %H:%M') }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

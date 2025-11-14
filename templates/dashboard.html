@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+  .dashboard-header {
+    font-weight: 700;
+    font-size: 32px;
+    margin-bottom: 25px;
+    color: #4e73df;
+    text-align: center;
+  }
+
+  .create-btn-container {
+    text-align: right;
+    margin-bottom: 20px;
+  }
+
+  .create-assignment-btn {
+    padding: 10px 18px;
+    font-size: 16px;
+    border-radius: 10px;
+  }
+
+  /* Stylish Table */
+  .custom-table {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+  }
+
+  .custom-table thead {
+    background: #4e73df;
+    color: white;
+    font-size: 17px;
+  }
+
+  .custom-table th, .custom-table td {
+    padding: 14px;
+    vertical-align: middle;
+  }
+
+  .custom-table tbody tr:hover {
+    background: rgba(78, 115, 223, 0.07);
+    transition: 0.3s;
+  }
+
+  .action-btn {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+</style>
+
+<h3 class="dashboard-header">Dashboard ({{ current_user.role | capitalize }})</h3>
+
+{% if current_user.role == 'teacher' %}
+<div class="create-btn-container">
+  <a href="{{ url_for('main.create_assignment') }}"
+     class="btn btn-primary create-assignment-btn">
+      + Create Assignment
+  </a>
+</div>
+{% endif %}
+
+<table class="table custom-table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Due Date</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for a in assignments %}
+    <tr>
+      <td>{{ a.title }}</td>
+      <td>{{ a.due_date.strftime('%Y-%m-%d') }}</td>
+      <td>
+        {% if current_user.role == 'student' %}
+          <a href="{{ url_for('main.submit_assignment', assignment_id=a.id) }}"
+             class="btn btn-success btn-sm action-btn">
+             Submit
+          </a>
+        {% else %}
+          <a href="{{ url_for('main.view_submissions', assignment_id=a.id) }}"
+             class="btn btn-info btn-sm action-btn">
+             View Submissions
+          </a>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

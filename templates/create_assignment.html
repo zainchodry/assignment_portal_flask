@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+  .assignment-card {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 35px 30px;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+    transition: 0.3s ease;
+  }
+
+  .assignment-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  }
+
+  .assignment-title {
+    text-align: center;
+    font-weight: 700;
+    font-size: 30px;
+    color: #1cc88a;
+    margin-bottom: 20px;
+  }
+
+  .form-label {
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+
+  textarea {
+    min-height: 130px;
+  }
+</style>
+
+<div class="assignment-card">
+
+  <h3 class="assignment-title">Create Assignment</h3>
+
+  <form method="POST">
+
+    <label class="form-label">Title</label>
+    <input class="form-control mb-3" name="title" placeholder="Enter assignment title">
+
+    <label class="form-label">Description</label>
+    <textarea class="form-control mb-3" name="description" placeholder="Enter assignment details"></textarea>
+
+    <label class="form-label">Due Date</label>
+    <input class="form-control mb-3" type="date" name="due_date">
+
+    <button class="btn btn-success submit-btn">Create Assignment</button>
+  </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+  .login-card {
+    max-width: 420px;
+    margin: 40px auto;
+    padding: 35px 30px;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+    transition: 0.3s ease;
+  }
+
+  .login-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  }
+
+  .login-title {
+    text-align: center;
+    font-weight: 700;
+    font-size: 28px;
+    color: #1cc88a;
+    margin-bottom: 15px;
+  }
+
+  .form-label {
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .login-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 10px;
+  }
+
+  .login-footer {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 500;
+  }
+
+  .login-footer a {
+    font-weight: 600;
+    text-decoration: none;
+  }
+</style>
+
+<div class="login-card">
+
+  <h3 class="login-title">Welcome Back</h3>
+
+  <form method="POST">
+
+    <label class="form-label">Email</label>
+    <input class="form-control mb-3" name="email" placeholder="Enter Email">
+
+    <label class="form-label">Password</label>
+    <input class="form-control mb-3" name="password" type="password" placeholder="Enter Password">
+
+    <button class="btn btn-success login-btn mb-2">Login</button>
+
+    <div class="login-footer">
+      Don’t have an account?
+      <a href="{{ url_for('auth.register') }}">Register</a>
+    </div>
+
+  </form>
+
+</div>
+
+{% endblock %}

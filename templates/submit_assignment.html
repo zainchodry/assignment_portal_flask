@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .submit-container {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 25px;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .submit-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #2c3e50;
+    }
+
+    .form-control {
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        font-weight: bold;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<div class="submit-container">
+    <h3 class="submit-title">Submit Assignment: {{ assignment.title }}</h3>
+
+    <form method="POST" enctype="multipart/form-data">
+        <label><b>Upload File</b></label>
+        <input class="form-control mb-3" type="file" name="file" required>
+
+        <button class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

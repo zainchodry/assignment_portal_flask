@@ -32,7 +32,7 @@ def register():
             flash("Email must end with @gmail.com", "danger")
             return redirect(url_for('auth.register'))
 
-        hashed_password = generate_password_hash(password, method='sha256')
+        hashed_password = generate_password_hash(password)
 
         new_user = User(
             username=username,
